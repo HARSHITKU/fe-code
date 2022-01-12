@@ -182,8 +182,7 @@ section {
   /* Adjusted the position of error message on tablet view since max-width 
   is used all the lower widths will inherit the same style */
   .input-group.error .error-msg {
-    bottom: 55px;
-    font-size: 12px;
+    bottom: 53px;
   }
   .input-group > .form-control,
   .btn-form-submit {
@@ -194,7 +193,16 @@ section {
   }
   /* Increased the top margin of the button on tablet view */
   .btn-form-submit {
-    margin: 28px 0 0 0;
+    margin: 34px 0 0 0;
+  }
+}
+
+/* Additional Fix - Not identified by QA */
+
+/* Added Media Query for Mobile view where the error message was occupying whole width */
+@media (max-width: 425px) {
+  .input-group.error .error-msg {
+    width: 100%;
   }
 }
 
@@ -253,6 +261,10 @@ section {
 .list-text p {
   margin: 0;
   line-height: 26px;
+}
+
+.row:nth-child(2n) .col-sm-6:first-child {
+  order: 2;
 }
 
 @media (max-width: 991px) {
