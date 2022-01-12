@@ -49,47 +49,58 @@
           <h1 class="text-primary text-center mb-2 mb-md-4">Here's How It Works</h1>
           <h2 class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h2>
         </div>
-        <div class="row">
-          <div class="list-item col-md-6 d-flex align-items-lg-center">
-            <div class="list-circle">1</div>
-            <div class="list-text">
-              <h3>Lorem Ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+        <!-- QA Fix 4: In the mobile View Order of the features list is incorrect -->
+        <!-- Added row class with flex property -->
+        <div class="row d-flex align-items-center">
+          <!-- Div 1: Created below div which occupies 6 grids on medium screens &  12 grids on small screens-->
+          <div class="col-md-6 col-sm-12">
+            <!-- Added col class to provide full grid space to the list-item on all screens -->
+            <div class="list-item col d-flex align-items-lg-center">
+              <div class="list-circle">1</div>
+              <div class="list-text">
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+            <div class="list-item col d-flex align-items-lg-center">
+              <div class="list-circle">2</div>
+              <div class="list-text">
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+            </div>
+            <div class="list-item col d-flex align-items-lg-center mb-md-0">
+              <div class="list-circle">3</div>
+              <div class="list-text">
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
             </div>
           </div>
-          <div class="list-item col-md-6 d-flex align-items-lg-center">
-            <div class="list-circle">4</div>
-            <div class="list-text">
-              <h3>Lorem Ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <!-- Div 2: Created below div which occupies 6 grids on medium screens &  12 grids on small screens-->
+          <div class="col-md-6 col-sm-12">
+            <!-- Same as above -->
+            <div class="list-item col d-flex align-items-lg-center">
+              <div class="list-circle">4</div>
+              <div class="list-text">
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
             </div>
-          </div>
-          <div class="list-item col-md-6 d-flex align-items-lg-center">
-            <div class="list-circle">2</div>
-            <div class="list-text">
-              <h3>Lorem Ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="list-item col d-flex align-items-lg-center">
+              <div class="list-circle">5</div>
+              <div class="list-text">
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
             </div>
-          </div>
-          <div class="list-item col-md-6 d-flex align-items-lg-center">
-            <div class="list-circle">5</div>
-            <div class="list-text">
-              <h3>Lorem Ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-          </div>
-          <div class="list-item col-md-6 d-flex align-items-lg-center mb-md-0">
-            <div class="list-circle">3</div>
-            <div class="list-text">
-              <h3>Lorem Ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-          </div>
-          <div class="list-item col-md-6 d-flex align-items-lg-center mb-md-0">
-            <div class="list-circle">6</div>
-            <div class="list-text">
-              <h3>Lorem Ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="list-item col d-flex align-items-lg-center mb-md-0">
+              <div class="list-circle">6</div>
+              <div class="list-text">
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
             </div>
           </div>
         </div>
