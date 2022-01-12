@@ -176,6 +176,15 @@ section {
   .input-group {
     flex-direction: column;
   }
+  
+  /* QA Fix 3: In mobile view position of error-message is incorrect */
+
+  /* Adjusted the position of error message on tablet view since max-width 
+  is used all the lower widths will inherit the same style */
+  .input-group.error .error-msg {
+    bottom: 55px;
+    font-size: 12px;
+  }
   .input-group > .form-control,
   .btn-form-submit {
     width: 100%;
@@ -183,8 +192,9 @@ section {
   .input-group > .form-control {
     height: 50px;
   }
+  /* Increased the top margin of the button on tablet view */
   .btn-form-submit {
-    margin: 12px 0 0 0;
+    margin: 28px 0 0 0;
   }
 }
 
