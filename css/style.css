@@ -3,8 +3,9 @@
 --------------------------------------------------------
 --| General
 --| Navbar
+--| Loader
 --| Search Form
---| [SECTION] Above the Fold 
+--| [SECTION] Above the Fold
 --| [SECTION] Features
 --| [SECTION][RESULTS PAGE] Result
 --| [SECTION][RESULTS PAGE] Search Again
@@ -96,11 +97,92 @@ section {
   padding: 20px 16px;
 }
 
+
+/* ************************************************************
+***************************************************************
+--- Loader ---
+***************************************************************
+************************************************************ */
+
+/* QA Fix 5: Loader not visible on any devices */
+#loader {
+  position: absolute;
+  background-color: #f6f8f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #004A80;
+  align-items: center;
+  height: 80vh;
+  width: 100%;
+  z-index: 1;
+}
+
 /* ************************************************************
 ***************************************************************
 --- Search Form ---
 ***************************************************************
 ************************************************************ */
+
+/* New Feature: Started Styling related to the new feature */
+.wrapper{
+  display: flex;
+  align-items: center;
+}
+
+/* Button Style */
+.search-type .action-button {
+  background-color: transparent;
+  border: 2px solid #F6BC25;
+  border-radius: 8px;
+  color: #F6BC25;
+  text-transform: uppercase;
+  float: left;
+  margin: 10px;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: 0.3s;
+  font-size: 16px;
+  position: relative;
+}
+
+/* Change button style on hover */
+.search-type .action-button:hover{
+  background-color: #F6BC25;
+  border: 2px solid #F6BC25;
+  color: #004A80;
+}
+
+/* Change button style in active state */
+.search-type .action-button.active {
+  background-color: #F6BC25;
+  color: #004A80;
+}
+
+/* Add down arrow on the button when in active state */
+.search-type .action-button.active::before {
+  content: '';
+  border: 10px solid transparent;
+  border-bottom: 0;
+  border-top-color: #F6BC25;
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  transform: translateX(-50%);
+}
+
+/* Load the email input on load */
+#email{
+  display: block;
+}
+
+.search-input-type {
+  display: none;
+  padding: 6px 12px;
+}
+
+/* New Feature: Ended Styling related to the new feature */
 
 .btn-form-submit {
   font-size: 24px;
@@ -197,12 +279,49 @@ section {
   }
 }
 
+/* New Feature: Maintaining the design layout on below pixels */
+@media (max-width: 518px) and (min-width: 426px){
+
+  .label-text{
+    font-size: 0.8rem;
+  }
+
+  .search-type .action-button{
+    font-size: 0.8rem;
+    margin: 0 0 10px 10px;
+  }
+}
+
 /* Additional Fix - Not identified by QA */
 
 /* Added Media Query for Mobile view where the error message was occupying whole width */
 @media (max-width: 425px) {
   .input-group.error .error-msg {
     width: 100%;
+  }
+
+  /* New Feature: Removed label on small mobile devices as per the spec */
+  .label-text{
+    display: none;
+  }
+
+  .search-type{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .search-type .action-button{
+    margin: 10px 0;
+    width: 48%;
+  }
+}
+
+/* New Feature: Added Media Query to design the buttons as per the spec for small mobile devices */
+@media (max-width: 375px){
+
+  .search-type .action-button{
+    font-size: 0.8rem;
   }
 }
 
