@@ -1,5 +1,5 @@
 const baseURL = 'https://ltv-data-api.herokuapp.com/api/v1/records.json';
-
+let selectedSearchType = 'Email Address';
 $(document).ready(function () {
   $("#loader").hide();
   $("#btn-search").on("click", function (e) {
@@ -28,7 +28,7 @@ $(document).ready(function () {
         })
         .catch((e) => console.log(e));
        
-    } else if (x !== true) {
+    } else if (x !== true && selectedSearchType === 'Email Address') {
       document.querySelector('input[type="text"]').parentNode.classList.add("error");
       $(".error-msg").text("Please enter a valid email address");
     } 
@@ -47,7 +47,7 @@ $(document).ready(function () {
           $("#loader").hide();
         })
         .catch((e) => console.log(e));
-    }else {
+    }else if(!y && selectedSearchType === 'Phone Number'){
       document.querySelector('input[type="tel"]').parentNode.classList.add("error");
       $(".error-msg").text("Please enter a valid phone number");
     }
@@ -89,9 +89,10 @@ $(document).ready(function () {
             $("#loader").hide();
           })
           .catch((e) => console.log(e));
-      } else if (x !== true) {
+      }else if (x !== true && selectedSearchType === 'Email Address') {
         document.querySelector('input[type="text"]').parentNode.classList.add("error");
-      }
+        $(".error-msg").text("Please enter a valid email address");
+      } 
     }
   });
   $('input[type="tel"]').keypress(function (event) {
@@ -130,7 +131,7 @@ $(document).ready(function () {
             $("#loader").hide();
           })
           .catch((e) => console.log(e));
-      } else if (!y) {
+      }else if(!y && selectedSearchType === 'Phone Number'){
         document.querySelector('input[type="tel"]').parentNode.classList.add("error");
         $(".error-msg").text("Please enter a valid phone number");
       }
@@ -154,5 +155,8 @@ function enableSearchType(event, searchType) {
   }
   document.getElementById(searchType).style.display = "block";
   // Adding active classes dynamically
+  selectedSearchType = event.currentTarget.innerHTML;
+  selectedSearchType === "Email Address" ?
+    document.querySelector('input[type="tel"]').parentNode.classList.remove("error") : document.querySelector('input[type="text"]').parentNode.classList.remove("error");
   event.currentTarget.className += " active";
 }
