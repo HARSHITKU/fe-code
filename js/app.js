@@ -1,6 +1,7 @@
 const baseURL = 'https://ltv-data-api.herokuapp.com/api/v1/records.json';
 let selectedSearchType = 'Email Address';
 $(document).ready(function () {
+  // Hiding the loader initially
   $("#loader").hide();
   $("#btn-search").on("click", function (e) {
     e.preventDefault();
@@ -13,6 +14,7 @@ $(document).ready(function () {
     x = email.match(emailRegEx) ? true : false;
     y = phone.match(phoneRegEx) ? true : false;
     if (x === true) {
+      // showing the loader when the API call starts
       $("#loader").show();
       $(".features").hide();
       $(".above-the-fold").hide();
@@ -24,10 +26,11 @@ $(document).ready(function () {
         .then(function (contents) {
           localStorage.setItem("userObject", contents);
           window.location.href = "result.html";
+          // Hiding the loader as soon as we get the response from the API
           $("#loader").hide();
         })
         .catch((e) => console.log(e));
-       
+    // Adding error state on the input box only if the regex is not matching & current active button is of the same input
     } else if (x !== true && selectedSearchType === 'Email Address') {
       document.querySelector('input[type="text"]').parentNode.classList.add("error");
       $(".error-msg").text("Please enter a valid email address");
@@ -44,9 +47,11 @@ $(document).ready(function () {
         .then(function (contents) {
           localStorage.setItem("userObject", contents);
           window.location.href = "result.html";
+          // Hiding the loader as soon as we get the response from the API
           $("#loader").hide();
         })
         .catch((e) => console.log(e));
+    // Adding error state on the input box only if the regex is not matching & current active button is of the same input
     }else if(!y && selectedSearchType === 'Phone Number'){
       document.querySelector('input[type="tel"]').parentNode.classList.add("error");
       $(".error-msg").text("Please enter a valid phone number");
@@ -89,6 +94,7 @@ $(document).ready(function () {
             $("#loader").hide();
           })
           .catch((e) => console.log(e));
+      // Adding error state on the input box only if the regex is not matching & current active button is of the same input
       }else if (x !== true && selectedSearchType === 'Email Address') {
         document.querySelector('input[type="text"]').parentNode.classList.add("error");
         $(".error-msg").text("Please enter a valid email address");
@@ -131,6 +137,7 @@ $(document).ready(function () {
             $("#loader").hide();
           })
           .catch((e) => console.log(e));
+      // Adding error state on the input box only if the regex is not matching & current active button is of the same input
       }else if(!y && selectedSearchType === 'Phone Number'){
         document.querySelector('input[type="tel"]').parentNode.classList.add("error");
         $(".error-msg").text("Please enter a valid phone number");
@@ -139,7 +146,7 @@ $(document).ready(function () {
   });
 });
 
-// Function to load input boxes dynamically
+// New Feature: Function to load input boxes dynamically
 
 function enableSearchType(event, searchType) {
   let i, loadSearchType, allButtons;
@@ -154,9 +161,11 @@ function enableSearchType(event, searchType) {
     allButtons[i].className = allButtons[i].className.replace(" active", "");
   }
   document.getElementById(searchType).style.display = "block";
-  // Adding active classes dynamically
+  // Accessing the current active button
   selectedSearchType = event.currentTarget.innerHTML;
+  // Based on the active button, I am removing the error state from the other input
   selectedSearchType === "Email Address" ?
     document.querySelector('input[type="tel"]').parentNode.classList.remove("error") : document.querySelector('input[type="text"]').parentNode.classList.remove("error");
+  // Adding active classes dynamically
   event.currentTarget.className += " active";
 }
