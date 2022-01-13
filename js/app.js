@@ -9,24 +9,25 @@ $(document).ready(function () {
     phone = $('input[type="tel"]').val().toLowerCase();
     var x, y;
     emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    phoneRegEx = /^[1-9]{1}[0-9]{9}$/;
+    phoneRegEx = /^\d{10}$/;
     x = email.match(emailRegEx) ? true : false;
     y = phone.match(phoneRegEx) ? true : false;
     if (x === true) {
       $("#loader").show();
       $(".features").hide();
+      $(".above-the-fold").hide();
       document.querySelector('input[type="text"]').parentNode.classList.remove("error");
       const proxyurl = "";
       const url = baseURL + '?email=' + email;
       fetch(proxyurl + url)
         .then((response) => response.text())
         .then(function (contents) {
-          $("#loader").hide();
-          $(".features").show();
           localStorage.setItem("userObject", contents);
           window.location.href = "result.html";
+          $("#loader").hide();
         })
         .catch((e) => console.log(e));
+       
     } else if (x !== true) {
       document.querySelector('input[type="text"]').parentNode.classList.add("error");
       $(".error-msg").text("Please enter a valid email address");
@@ -34,6 +35,7 @@ $(document).ready(function () {
     if(y){
       $("#loader").show();
       $(".features").hide();
+      $(".above-the-fold").hide();
       document.querySelector('input[type="tel"]').parentNode.classList.remove("error");
       const proxyurl = "";
       const url = baseURL + '?phone=' + phone;
@@ -41,7 +43,6 @@ $(document).ready(function () {
         .then((response) => response.text())
         .then(function (contents) {
           $("#loader").hide();
-          $(".features").show();
           localStorage.setItem("userObject", contents);
           window.location.href = "result.html";
         })
@@ -74,18 +75,64 @@ $(document).ready(function () {
 
 
       if (x === true) {
+        $("#loader").show();
+        $(".features").hide();
+        $(".above-the-fold").hide();
         const proxyurl = "";
         const url =
           'https://ltv-data-api.herokuapp.com/api/v1/records.json?email=' + email;
         fetch(proxyurl + url)
           .then((response) => response.text())
           .then(function (contents) {
+            $("#loader").hide();
             localStorage.setItem("userObject", contents);
             window.location.href = "result.html";
           })
           .catch((e) => console.log(e));
       } else if (x !== true) {
         document.querySelector('input[type="text"]').parentNode.classList.add("error");
+      }
+    }
+  });
+  $('input[type="tel"]').keypress(function (event) {
+    phone = $('input[type="tel"]').val().toLowerCase();
+    phoneRegEx = /^\d{10}$/;
+    if (phone.match(phoneRegEx)) {
+      y = true;
+      document.querySelector('input[type="tel"]').parentNode.classList.remove("error");
+    } else {
+      y = false;
+    }
+    keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode == '13') {
+      /**
+       * Makes a request to ltv API to search an specific email address.
+       * If there's a response, it gets stored in the local storage and redirects to results page
+       */
+      event.preventDefault();
+      localStorage.clear(); //Clears storage for next request
+
+      var x, y;
+
+
+      if (y) {
+        $("#loader").show();
+        $(".features").hide();
+        $(".above-the-fold").hide();
+        const proxyurl = "";
+        const url =
+          'https://ltv-data-api.herokuapp.com/api/v1/records.json?phone=' + phone;
+        fetch(proxyurl + url)
+          .then((response) => response.text())
+          .then(function (contents) {
+            $("#loader").hide();
+            localStorage.setItem("userObject", contents);
+            window.location.href = "result.html";
+          })
+          .catch((e) => console.log(e));
+      } else if (!y) {
+        document.querySelector('input[type="tel"]').parentNode.classList.add("error");
+        $(".error-msg").text("Please enter a valid phone number");
       }
     }
   });
