@@ -3,8 +3,10 @@ $(document).ready(function () {
    * Gets an object and sets its content into the result card in the result page
    * If there's no content in the JSON object, makes sure to tell the user
    */
+   $("#loader").show();
   if (window.localStorage) {
     if (localStorage.userObject) {
+      $("#loader").hide();
       var user_object = localStorage.getItem('userObject');
       var testVar;
       retreivedObject = JSON.parse(user_object); //parses the retrieved object into an JSON object

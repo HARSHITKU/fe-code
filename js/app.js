@@ -42,9 +42,9 @@ $(document).ready(function () {
       fetch(proxyurl + url)
         .then((response) => response.text())
         .then(function (contents) {
-          $("#loader").hide();
           localStorage.setItem("userObject", contents);
           window.location.href = "result.html";
+          $("#loader").hide();
         })
         .catch((e) => console.log(e));
     }else {
@@ -84,9 +84,9 @@ $(document).ready(function () {
         fetch(proxyurl + url)
           .then((response) => response.text())
           .then(function (contents) {
-            $("#loader").hide();
             localStorage.setItem("userObject", contents);
             window.location.href = "result.html";
+            $("#loader").hide();
           })
           .catch((e) => console.log(e));
       } else if (x !== true) {
@@ -125,9 +125,9 @@ $(document).ready(function () {
         fetch(proxyurl + url)
           .then((response) => response.text())
           .then(function (contents) {
-            $("#loader").hide();
             localStorage.setItem("userObject", contents);
             window.location.href = "result.html";
+            $("#loader").hide();
           })
           .catch((e) => console.log(e));
       } else if (!y) {
